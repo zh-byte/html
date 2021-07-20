@@ -10,6 +10,60 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
  
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script>
+	function jisuan()
+{
+	//获得工资
+	var sal=document.getElementById("salary").value;
+	//判断输入的工资是否合法
+	var regExp=/^[0-9]{1,9}$/;
+	if (!regExp.test(sal)) {
+		//
+		document.getElementById("salary").value="必须输入工资数";
+		document.getElementById("salary").style="color:red";
+		return;
+	}
+	//输入合法
+	var salNum=parseInt(sal);
+	var ylgr=salNum*0.08;
+	var ylgs=salNum*0.2;
+	document.getElementById("ylgr").innerHTML=ylgr;
+	document.getElementById("ylgs").innerText=ylgs;
+	
+	var ybgr=salNum*0.02;
+	var ybgs=salNum*0.06;
+	document.getElementById("ybgr").innerText=ybgr;
+	document.getElementById("ybgs").innerText=ybgs;
+		
+	var sygr=salNum*0.005;
+	var sygs=salNum*0.015;
+	document.getElementById("sygr").innerText=sygr;
+		document.getElementById("sygs").innerText=sygs;
+		
+		var gongshang=salNum*0.005;
+	document.getElementById("gongshang").innerHTML=gongshang;
+		
+		
+		var shengyu=salNum*0.08;
+		document.getElementById("shengyu").innerHTML=shengyu;
+		
+		var gjjgr=salNum*0.12;
+		var gjjgs=salNum*0.12;
+		document.getElementById("gjjgr").innerHTML=gjjgr;
+		document.getElementById("gjjgs").innerHTML=gjjgs;
+		
+		grhj=ylgr+ybgr+sygr+gjjgr;
+		gshj=ylgs+ybgs+sygs+gjjgs+gongshang+shengyu;
+		document.getElementById("grhj").innerText=grhj;
+		document.getElementById("gshj").innerHTML=gshj;
+		var zonghe=salNum+gshj;
+		document.getElementById("total").innerText=zonghe;
+}
+function clearTxt(){
+	document.getElementById("salary").value='';
+	document.getElementById("salary").style="color:black"
+}
+</script>
 	</head>
 	<body>
 		<div class="container text-center">
@@ -18,72 +72,72 @@
 				<tr>
 					<td>工资</td>
 					<td colspan="3">
-						<input type="text" id="salary" placeholder="输入工资" class="form-control" />
+						<input  onfocus="clearTxt()" type="text" id="salary" placeholder="输入工资" class="form-control" />
 					</td>
 					<td>
-						<button class="btn btn-danger btn-block">计算</button>
+						<button onclick="jisuan()"class="btn btn-danger btn-block">计算</button>
 					</td>
 				</tr>
 				<tr class="bg-primary">
 					<td>险种</td>
-					<td>个人%</td>
-					<td>个人</td>
+					<td >个人%</td>
+					<td >个人</td>
 					<td>公司%</td>
-					<td>公司</td>
+					<td >公司</td>
 					
 				</tr>
 				<tr>
 					<td>养老</td>
 					<td>8%</td>
-					<td></td>
+					<td id="ylgr"></td>
 					<td>20%</td>
-					<td></td>
+					<td id="ylgs"></td>
 				</tr>
 				<tr>
 					<td>医疗</td>
-					<td>2%</td>
-					<td></td>
+					<td >2%</td>
+					<td id="ybgr"></td>
 					<td>6%</td>
-					<td></td>
+					<td id="ybgs"></td>
 				</tr>
 				<tr>
 					<td>失业</td>
 					<td>0.5%</td>
-					<td></td>
+					<td id="sygr"></td>
 					<td>1.5%</td>
-					<td></td>
+					<td id="sygs"></td>
 				</tr>
 				<tr>
 					<td>工伤</td>
 					<td></td>
 					<td></td>
 					<td>0.5%</td>
-					<td></td>
+					<td id="gongshang"></td>
 				</tr>
 				<tr>
 					<td>生育</td>
 					<td></td>
 					<td></td>
 					<td>0.8%</td>
-					<td></td>
+					<td id="shengyu"></td>
 				</tr>
 				<tr>
 					<td>公积金</td>
 					<td>12%</td>
-					<td></td>
+					<td id="gjjgr"></td>
 					<td>12%</td>
-					<td></td>
+					<td id="gjjgs"></td>
 				</tr>
 				<tr>
 					<td>合计</td>
-					<td>个人合计</td>
-					<td></td>
-					<td>公司合计</td>
-					<td></td>
+					<td >个人合计</td>
+					<td id="grhj"></td>
+					<td >公司合计</td>
+					<td id="gshj"></td>
 				</tr>
 				<tr>
 					<td>总额</td>
-					<td colspan="4"></td>
+					<td id="total" colspan="4"></td>
 				</tr>
 			</table>
 			开发者：****中北大学软件学院小学期

@@ -13,8 +13,17 @@
 		<script >
 			//定义一个函数
 			function calc(){
+				//判断是不是数字
+				
 				//1.获取存款金额
 				var sun=document.getElementById("amount").value;
+				
+				var regExp=/^[0-9]{2,6}$/;	//定义一个正则表达式金额数最多6位最少2位
+				if(!regExp.test(sun)){
+				document.getElementById("amount").value="输入不合法";
+				document.getElementById("amount").style="color:red";
+				return;
+				}
 				//上面取值是”8000“
 				//将”8000“-->8000
 				var cunkuan=parseInt(sun);//字符串转成整数
@@ -28,6 +37,11 @@
 				document.getElementById("lixi").value=lixi;
 				document.getElementById("total").value=total;
 			}
+			function clearContent(){
+				document.getElementById("amount").value='';
+				document.getElementById("amount").style="black";
+				
+			}
 		</script>
 	</head>
 	<body>
@@ -40,7 +54,7 @@
 				<tr>
 					<td>存款金额</td>
 					<td>
-						<input class="form-control" type="text" placeholder="输入存款金额"id="amount" />
+						<input  onfocus="clearContent()" class="form-control" type="text" placeholder="输入存款金额"id="amount" />
 					</td>
 				</tr>
 				<tr>
@@ -49,9 +63,9 @@
 						<select id="year" class="form-control">
 							<!--value是给后台用，-->
 							<option value="0.0175">一年（1.75%）</option>
-							<option value="0.0225">两年（2.25%）</option>
-							<option value="0.0275">三年（2.75%）</option>
-							<option value="0.0275">四年（2.75%）</option>
+							<option value="0.045">两年（2.25%）</option>
+							<option value="0.0825">三年（2.75%）</option>
+							<option value="0.1375">四年（2.75%）</option>
 						</select>
 					</td>
 				</tr>
